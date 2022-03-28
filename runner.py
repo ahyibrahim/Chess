@@ -2,7 +2,7 @@ import Controller
 
 if __name__ == "__main__":
     chess = Controller.Controller()
-    chess.board.print_board()
+    chess.print_board()
 
     # White starts first. turn = True : White, turn = False : Black
     turn = True
@@ -17,9 +17,10 @@ if __name__ == "__main__":
 
         if start == None or to == None:
             continue
-
-        chess.move(start, to)
-
+        current = "white" if turn else "black"
+        print(f"Attempting to move {start} to {to} in {current}")
+        if chess.move(start, to, turn):
+            turn = not turn
         # check for promotion pawns
         # i = 0
         # while i < 8:
@@ -32,5 +33,5 @@ if __name__ == "__main__":
         #         chess.promotion((7, i))
         #         break
         #     i += 1
-        turn = not turn
-        chess.board.print_board(turn)
+        
+        chess.print_board()

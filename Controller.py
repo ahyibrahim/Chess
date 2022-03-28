@@ -10,7 +10,7 @@ class Controller():
 
     def __init__(self):
         self.board = Board.Board()
-        pass
+        print(f"initialized board with type {type(self.board)}")
 
     def promotion(self):
         # add any parameters necessary and replace the body with
@@ -22,11 +22,16 @@ class Controller():
     def move(self, start, to, color):
         selected_piece = self.board.board[start[0]][start[1]]
         if selected_piece == None or selected_piece.is_white() != color:
+            print("Invalid Move")
             return False
-        self.board.board[start[0]][start[1]] = None
-        self.board.board[to[0]][to[1]] = selected_piece
-        self.board.flip_board()
-        return True
+        if selected_piece.is_valid_move(start, to, self.board.board):
+            self.board.board[start[0]][start[1]] = None
+            self.board.board[to[0]][to[1]] = selected_piece
+            self.board.flip_board(not color)
+            print(f"Piece said it was ok to move piece in {self.locate(start)} to {self.locate(to)}")
+            return True
+        print(f"Piece said it was not ok to move piece in {self.locate(start)} to {self.locate(to)}")
+        return False
 
     def translate(self, position):
         column_dict = dict(

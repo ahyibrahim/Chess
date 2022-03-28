@@ -63,4 +63,4 @@ class Board():
     def flip_board(self, to_color):
         if self.color != to_color:
             self.color = to_color
-            self.board = self.board.reverse()
+            self.board.reverse()
