@@ -13,6 +13,18 @@ class Piece():
     def is_white(self):
         return self.color
 
+    def check_diagonal_obstruction(self, start, to, board):
+        n = start[0] = to[0]
+        #Path is right diagonal
+        if start[0] - to[0] == to[1] - start[1]:
+            #Upper Diagonal
+            if n > 0:
+                pass
+            #Lower Diagonal
+            else:
+                pass
+
+
     def __str__(self):
         return ''
         
@@ -52,8 +64,28 @@ class Bishop(Piece):
         super().__init__(color)
         self.name = "B"
 
-    def is_valid_move(self):
-        pass
+    def is_valid_move(self, start, to, board):
+        n = start[0] - to[0]
+        if n == to[1] - start[1] or n == start[1] - to[1]:
+            print(f"Piece said it was ok to move piece at {start} to {to}\n\tPiece Awaiting path validation")
+        # print(f"N = {start[0] - to[0]}")
+        # if start[0] - to[0] == to[1] - start[1]:
+        #     print("UR Passed")
+        # else:
+        #     print("UR Failed")
+        # if to[0] - start[0] == to[1] - start[1]:
+        #     print("LR Passed")
+        # else: 
+        #     print("LR Failed")
+        # if start[0] - to[0] == start[1] - to[1]:
+        #     print("UL Passed")
+        # else:
+        #     print("UL Failed")
+        # if to[0] - start[0] == start[1] - to[1]:
+        #     print("LL Passed")
+        # else:
+        #     print("LL Failed")
+            pass   
 
     def __str__(self):
         prefix = super().__str__()
