@@ -9,7 +9,8 @@ class Controller():
     """
 
     def __init__(self):
-        self.board = Board.Board()
+        # self.board = Board.Board()
+        self.board = Board.Board('b')
         print(f"initialized board with type {type(self.board)}")
 
     def promotion(self):
@@ -19,10 +20,11 @@ class Controller():
         print("Promoting Pawn")
         pass
 
+
     def move(self, start, to, color):
         selected_piece = self.board.board[start[0]][start[1]]
         if selected_piece == None or selected_piece.is_white() != color:
-            print("Invalid Move")
+            print("Invalid Move")   
             return False
         if selected_piece.is_valid_move(start, to, self.board.board):
             self.board.board[start[0]][start[1]] = None

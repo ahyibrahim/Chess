@@ -8,19 +8,27 @@ if __name__ == "__main__":
     turn = True
 
     while True:
-        start = input("From: ")
-        to = input("To: ")
+        Move = input("Your move: ")
+        # start = input("From: ")
+        # to = input("To: ")
 
         # Translate user input to coordinates
-        start = chess.translate(start)
-        to = chess.translate(to)
+        start = chess.translate(Move.split(" ")[0])
+        to = chess.translate(Move.split(" ")[1])
+        # start = chess.translate(start)
+        # to = chess.translate(to)
 
         if start == None or to == None:
             continue
-        current = "white" if turn else "black"
+
+        current = "white" if turn else "black" 
+
         print(f"Attempting to move {start} to {to} in {current}")
+
         if chess.move(start, to, turn):
-            turn = not turn
+            # Uncomment next line to enable turn switching
+            #turn = not turn
+            pass
         # check for promotion pawns
         # i = 0
         # while i < 8:

@@ -42,6 +42,19 @@ class Board():
 
         self.color = True
 
+    def __init__(self,type):
+        print("Initializing Testing Board")
+        self.board = []
+        for count in range(8):
+            self.board.append([None] * 8)
+        self.color = True
+        if type == 'b':
+            self.board[4][3] = Piece.Bishop(True)
+            self.board[2][5] = Piece.Pawn(False)
+            self.board[2][5] = Piece.Pawn(False)
+            self.board[2][5] = Piece.Pawn(False)
+            pass
+
     def print_board(self):
         print("  ", "_" * 10 * 4)
         for i, row in enumerate(self.board):
