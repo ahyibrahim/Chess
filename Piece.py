@@ -4,6 +4,7 @@ class Piece():
     """
     Put description of the Piece class here
     """
+
     def __init__(self, color):
         self.color = color
 
@@ -15,19 +16,17 @@ class Piece():
 
     def check_diagonal_obstruction(self, start, to, board):
         n = start[0] = to[0]
-        #Path is right diagonal
+        # Path is right diagonal
         if start[0] - to[0] == to[1] - start[1]:
-            #Upper Diagonal
+            # Upper Diagonal
             if n > 0:
                 pass
-            #Lower Diagonal
+            # Lower Diagonal
             else:
                 pass
 
-
     def __str__(self):
         return ''
-        
 
 
 class Rook(Piece):
@@ -43,12 +42,10 @@ class Rook(Piece):
         return '{} {}'.format(prefix, self.name)
 
 
-
 class Knight(Piece):
     def __init__(self, color):
         super().__init__(color)
         self.name = "N"
-
 
     def is_valid_move(self):
         pass
@@ -56,7 +53,6 @@ class Knight(Piece):
     def __str__(self):
         prefix = super().__str__()
         return '{} {}'.format(prefix, self.name)
-
 
 
 class Bishop(Piece):
@@ -67,7 +63,8 @@ class Bishop(Piece):
     def is_valid_move(self, start, to, board):
         n = start[0] - to[0]
         if n == to[1] - start[1] or n == start[1] - to[1]:
-            print(f"Piece said it was ok to move piece at {start} to {to}\n\tPiece Awaiting path validation")
+            print(
+                f"Piece said it was ok to move piece at {start} to {to}\n\tPiece Awaiting path validation")
         # print(f"N = {start[0] - to[0]}")
         # if start[0] - to[0] == to[1] - start[1]:
         #     print("UR Passed")
@@ -75,7 +72,7 @@ class Bishop(Piece):
         #     print("UR Failed")
         # if to[0] - start[0] == to[1] - start[1]:
         #     print("LR Passed")
-        # else: 
+        # else:
         #     print("LR Failed")
         # if start[0] - to[0] == start[1] - to[1]:
         #     print("UL Passed")
@@ -85,12 +82,11 @@ class Bishop(Piece):
         #     print("LL Passed")
         # else:
         #     print("LL Failed")
-            pass   
+            pass
 
     def __str__(self):
         prefix = super().__str__()
         return '{} {}'.format(prefix, self.name)
-
 
 
 class Queen(Piece):
@@ -106,7 +102,6 @@ class Queen(Piece):
         return '{} {}'.format(prefix, self.name)
 
 
-
 class King(Piece):
     def __init__(self, color):
         super().__init__(color)
@@ -114,7 +109,7 @@ class King(Piece):
 
     def is_valid_move(self):
         pass
-    
+
     # I added an extra method for the King class
     def can_castle(self):
         pass
@@ -124,7 +119,6 @@ class King(Piece):
         return '{} {}'.format(prefix, self.name)
 
 
-
 class Pawn(Piece):
     def __init__(self, color):
         super().__init__(color)
@@ -132,12 +126,12 @@ class Pawn(Piece):
         self.is_first_move = True
 
     def is_valid_move(self, start, to, board):
-        #Horizontal Step or Two steps 
+        # Horizontal Step or Two steps
         if start[1] == to[1] and board[to[0]][to[1]] == None:
-            if start[0] == to[0] + 1 or (start[0] == to[0] + 2 and self.is_first_move):
+            if start[0] == to[0] + 1 or (start[0] == to[0] + 2 and self.is_first_move and board[to[0] + 1][to[1]] == None):
                 self.is_first_move = False
                 return True
-        #Diagonal right or left one step kill
+        # Diagonal right or left one step kill
         if start[0] == to[0] + 1 and (start[1] == to[1] + 1 or start[1] == to[1] - 1):
             if board[to[0]][to[1]] != None and board[to[0]][to[1]].color != self.color:
                 self.is_first_move = False
