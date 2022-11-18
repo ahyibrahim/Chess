@@ -27,7 +27,6 @@ for horizontal_tile in range(0, DISPLAY_HEIGHT, int(TILE_SIZE)):
     for vertical_tile in range(start, DISPLAY_WIDTH, int(TILE_SIZE)*2):
         pygame.draw.rect(surface, WHITE_TILE, pygame.Rect(
             vertical_tile, horizontal_tile, 100, 100))
-        print(vertical_tile)
 
     text = font.render(str(row_counter), True, text_color)
     text_rect = text.get_rect()
